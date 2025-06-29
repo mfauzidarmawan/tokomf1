@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UjiiFauzi // MFSHOP - Produk Digital Terpercaya</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <!-- ========== HEADER/NAVBAR ========== -->
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-bold text-heading">
+                        <i data-lucide="sparkles" class="text-primary"></i>
+                        <span>MFSHOP</span>
+                    </a>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex md:space-x-8">
+                    <a href="#produk" class="font-medium text-gray-600 hover:text-primary transition-colors">Produk</a>
+                    <a href="#keunggulan" class="font-medium text-gray-600 hover:text-primary transition-colors">Keunggulan</a>
+                    <a href="#testimoni" class="font-medium text-gray-600 hover:text-primary transition-colors">Testimoni</a>
+                    <a href="#faq" class="font-medium text-gray-600 hover:text-primary transition-colors">FAQ</a>
+                </nav>
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="https://wa.me/6285157014855?text=Halo%20MFSHOP,%20saya%20mau%20bertanya%20tentang%20produknya." target="_blank" class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 transition-colors">
+                        Hubungi Kami
+                    </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#produk" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">Produk</a>
+                <a href="#keunggulan" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">Keunggulan</a>
+                <a href="#testimoni" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">Testimoni</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">FAQ</a>
+                <a href="https://wa.me/6285157014855?text=Halo%20MFSHOP,%20saya%20mau%20bertanya%20tentang%20produknya." target="_blank" class="block w-full text-left mt-2 px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 transition-colors">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO, FEATURES, TESTIMONIALS, FAQ sections -->
+        <section id="hero" class="pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-heading tracking-tight">Tempat Belanja Produk Digital <span class="text-primary">Terpercaya</span> dengan Layanan Penuh & Bergaransi</h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-body">Hadir buat kamu yang lagi cari Produk Digital dengan harga Murah, Bergaransi, dan Fast Respon. Belanja nyaman, aman, dan efisien hanya di UjiiFauzi//MFSHOP.</p>
+                <div class="mt-8 flex justify-center gap-4 flex-wrap">
+                    <a href="#produk" class="inline-flex items-center justify-center px-8 py-3 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-primary hover:bg-blue-700 transition-transform transform hover:scale-105">Lihat Semua Produk</a>
+                    <a href="https://wa.me/6285157014855?text=Halo%20MFSHOP,%20saya%20mau%20konsultasi%20dulu." target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 rounded-lg shadow-sm text-base font-medium text-heading bg-white hover:bg-gray-50 transition-transform transform hover:scale-105">Konsultasi Dulu</a>
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-body">Total Pesanan yang Sudah Diproses Saat Ini: <span id="order-counter" class="font-bold text-lg text-heading">0</span>+</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="produk" class="py-16 sm:py-20 bg-light-gray">
+             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center">
+                     <h2 class="text-3xl sm:text-4xl font-bold text-heading">Pilih Aplikasi Premium Sesuai Kebutuhanmu</h2>
+                     <p class="mt-4 text-lg text-body">Solusi untuk semua masalah digitalmu ada di sini.</p>
+                 </div>
+                 <div id="product-list" class="mt-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                     <!-- Product cards will be inserted here by JavaScript -->
+                 </div>
+             </div>
+        </section>
+
+        <section id="keunggulan" class="py-16 sm:py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-heading">Kenapa Belanja di MFSHOP?</h2>
+                    <p class="mt-4 text-lg text-body">Kami bukan hanya menjual, kami memberikan pelayanan terbaik.</p>
+                </div>
+                <div class="mt-12 grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 text-center">
+                    <div><div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-4"><i data-lucide="shield-check" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-heading">Layanan Penuh & Bergaransi</h3><p class="mt-2 text-body">Garansi penuh selama masa langganan aktif. Jika ada kendala, kami siap membantu sampai tuntas.</p></div>
+                    <div><div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-4"><i data-lucide="rocket" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-heading">Proses Cepat & Fast Respon</h3><p class="mt-2 text-body">Pesanan Anda diproses dengan cepat. Admin kami siap merespons pertanyaan Anda sesegera mungkin.</p></div>
+                    <div><div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-4"><i data-lucide="tag" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-heading">Harga Terjangkau</h3><p class="mt-2 text-body">Dapatkan akses ke aplikasi premium dengan harga yang jauh lebih murah dibandingkan harga resmi.</p></div>
+                    <div><div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-primary mx-auto mb-4"><i data-lucide="lock" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-heading">Aman & Terpercaya</h3><p class="mt-2 text-body">Kami menjamin keamanan akun dan privasi Anda. Sudah dipercaya oleh ratusan pelanggan setia.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimoni" class="py-16 sm:py-20 bg-light-gray">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-heading">Apa Kata Pelanggan Kami?</h2>
+                    <p class="mt-4 text-lg text-body">Kepuasan mereka adalah bukti kualitas kami.</p>
+                </div>
+                <div class="mt-12 max-w-2xl mx-auto relative">
+                    <div id="text-testimonial-carousel" class="overflow-hidden">
+                        <div id="text-testimonial-track" class="flex transition-transform duration-500 ease-in-out"></div>
+                    </div>
+                    <button id="text-prev-btn" class="absolute top-1/2 -left-4 sm:-left-12 -translate-y-1/2 bg-white/70 hover:bg-white/90 p-2 rounded-full shadow-md transition-colors z-10"><i data-lucide="chevron-left" class="w-6 h-6 text-gray-800"></i></button>
+                    <button id="text-next-btn" class="absolute top-1/2 -right-4 sm:-right-12 -translate-y-1/2 bg-white/70 hover:bg-white/90 p-2 rounded-full shadow-md transition-colors z-10"><i data-lucide="chevron-right" class="w-6 h-6 text-gray-800"></i></button>
+                </div>
+                <div class="text-center mt-20">
+                     <h2 class="text-3xl sm:text-4xl font-bold text-heading">Bukti Transaksi di UjiiFauzi//MFSHOP</h2>
+                     <p class="mt-4 text-lg text-body">Ratusan transaksi berhasil kami proses setiap hari.</p>
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="https://drive.google.com/drive/folders/17kUuTqW_y1kYx3fP8tS7vR6wX9Z1zN4m?usp=sharing" target="_blank" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white font-bold text-lg rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                        <i data-lucide="folder-check"></i>
+                        <span>Lihat Semua Bukti Transaksi</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="faq" class="py-16 sm:py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-heading">Pertanyaan yang Sering Diajukan</h2>
+                    <p class="mt-4 text-lg text-body">Masih ragu? Temukan jawabanmu di sini.</p>
+                </div>
+                <div class="mt-12 max-w-3xl mx-auto space-y-4">
+                    <div class="border-b border-gray-200 pb-4"><button class="faq-question w-full flex justify-between items-center text-left text-lg font-semibold text-heading"><span>Bagaimana cara memesan produk?</span><i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i></button><div class="faq-answer hidden mt-2 text-body"><p>Cukup klik tombol "Pesan via WhatsApp" pada produk yang Anda inginkan, dan Anda akan langsung terhubung dengan admin kami untuk dibantu proses selanjutnya.</p></div></div>
+                    <div class="border-b border-gray-200 pb-4"><button class="faq-question w-full flex justify-between items-center text-left text-lg font-semibold text-heading"><span>Apakah produk yang dijual ini legal dan aman?</span><i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i></button><div class="faq-answer hidden mt-2 text-body"><p>Tentu saja. Kami menyediakan akses premium melalui metode yang legal dan aman untuk akun Anda. Kami tidak menggunakan metode ilegal seperti MOD atau APK crack.</p></div></div>
+                    <div class="border-b border-gray-200 pb-4"><button class="faq-question w-full flex justify-between items-center text-left text-lg font-semibold text-heading"><span>Berapa lama proses aktivasi setelah pembayaran?</span><i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i></button><div class="faq-answer hidden mt-2 text-body"><p>Proses aktivasi biasanya hanya memakan waktu 5-15 menit setelah konfirmasi pembayaran kami terima.</p></div></div>
+                    <div class="border-b border-gray-200 pb-4"><button class="faq-question w-full flex justify-between items-center text-left text-lg font-semibold text-heading"><span>Apa saja metode pembayaran yang diterima?</span><i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i></button><div class="faq-answer hidden mt-2 text-body"><p>Kami menerima semua jenis pembayaran melalui QRIS (DANA, Gopay, ShopeePay, OVO, LinkAja, Mobile Banking, dll). Informasi QRIS akan diberikan oleh admin saat proses pemesanan.</p></div></div>
+                    <div class="border-b border-gray-200 pb-4"><button class="faq-question w-full flex justify-between items-center text-left text-lg font-semibold text-heading"><span>Bagaimana jika aplikasi yang saya beli bermasalah?</span><i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i></button><div class="faq-answer hidden mt-2 text-body"><p>Jangan khawatir! Kami memberikan garansi penuh. Segera hubungi admin kami dengan menyertakan bukti pembelian, dan kami akan bantu selesaikan masalahnya secepat mungkin.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta-akhir" class="py-16 sm:py-20 bg-primary">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white">Siap Tingkatkan Produktivitas dan Kreativitas Digital Anda?</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-blue-100">Jangan biarkan fitur terbatas dan iklan menghambat pekerjaan dan kreasimu. Dapatkan akses premium sekarang juga!</p>
+                <div class="mt-8">
+                    <a href="https://wa.me/6285157014855?text=Halo%20MFSHOP,%20saya%20siap%20order%20sekarang." target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-primary bg-white hover:bg-blue-50 transition-transform transform hover:scale-105">Hubungi Kami Sekarang di WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER and POPUP -->
+    <footer class="bg-heading"><div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-gray-400"><p>&copy; 2024 UjiiFauzi // MFSHOP. Semua Hak Cipta Dilindungi.</p></div></footer>
+    <div id="purchase-popup" class="hidden fixed bottom-4 left-4 z-50 bg-white rounded-lg shadow-lg p-4 max-w-xs w-full">
+        <div class="flex items-start gap-3">
+            <div id="popup-icon-container" class="bg-gray-100 p-1 rounded-full flex items-center justify-center w-10 h-10"></div>
+            <div>
+                <p class="text-sm font-semibold text-heading" id="popup-message"></p>
+                <p class="text-xs text-body">beberapa saat yang lalu</p>
+            </div>
+            <button id="close-popup-btn" class="ml-auto text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+    </div>
+
+    <!-- Configuration and Main Script -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

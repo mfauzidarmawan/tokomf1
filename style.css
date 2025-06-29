@@ -1,0 +1,51 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFFFFF;
+    color: #343A40; /* Charcoal */
+}
+:root {
+    --primary-blue: #007BFF;
+    --accent-green: #28A745;
+    --tag-red: #DC3545;
+    --star-yellow: #FFC107;
+    --heading-color: #343A40;
+    --body-color: #6C757D;
+    --light-gray-bg: #F8F9FA;
+}
+.bg-primary { background-color: var(--primary-blue); }
+.text-primary { color: var(--primary-blue); }
+.bg-accent { background-color: var(--accent-green); }
+.hover\:bg-accent-dark:hover { background-color: #218838; }
+.bg-tag-red { background-color: var(--tag-red); }
+.text-heading { color: var(--heading-color); }
+.text-body { color: var(--body-color); }
+.bg-light-gray { background-color: var(--light-gray-bg); }
+.text-yellow-400 { color: var(--star-yellow); }
+
+/* Animation for Popup */
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+@keyframes slideOutDown {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%) scale(0.9);
+        opacity: 0;
+    }
+}
+.animate-slide-in {
+    animation: slideInUp 0.5s ease-out forwards;
+}
+.animate-slide-out {
+    animation: slideOutDown 0.5s ease-in forwards;
+}
