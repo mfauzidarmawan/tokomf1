@@ -1,6 +1,6 @@
 // --- !! PENTING !! ---
 // Ganti password di bawah ini dengan password rahasia Anda.
-const correctPassword = "mfshopadmin";
+const correctPassword = "mfshop-admin-rahasia";
 // --- !! PENTING !! ---
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,21 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
         renderProductList();
         renderPopupSettings();
         setupEventListeners();
-        initSortable(); // [BARU] Inisialisasi fitur drag-and-drop
+        initSortable();
     }
     
-    // --- [BARU] Drag & Drop Initialization ---
+    // --- Drag & Drop Initialization ---
     function initSortable() {
         new Sortable(adminProductList, {
-            handle: '.drag-handle', // Menentukan elemen mana yang menjadi 'pegangan'
-            animation: 150, // Animasi saat item dipindahkan
-            ghostClass: 'sortable-ghost', // Class untuk item 'bayangan' saat ditarik
+            handle: '.drag-handle', // Elemen yang menjadi 'pegangan'
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
             onEnd: function (evt) {
-                // Fungsi ini dijalankan setelah item selesai diseret
+                // Pindahkan item dalam array sesuai urutan baru
                 const movedItem = currentConfig.products.splice(evt.oldIndex, 1)[0];
                 currentConfig.products.splice(evt.newIndex, 0, movedItem);
                 
-                // Render ulang list untuk memastikan data-index dan event listener diperbarui
+                // Render ulang list untuk memperbarui 'data-index' pada tombol
                 renderProductList();
             },
         });
@@ -82,36 +83,39 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProductList() {
         adminProductList.innerHTML = '';
         currentConfig.products.forEach((product, index) => {
-            const productElement = document.createElement('div');
-            // Menambahkan class untuk item dan data-id
-            productElement.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-lg border product-item';
-            productElement.dataset.id = product.id; // Menyimpan ID produk
+            const productWrapper = document.createElement('div');
+            // [DIUBAH] Struktur HTML baru untuk item produk
+            // Menggunakan flexbox untuk menempatkan pegangan di sebelah kiri
+            productWrapper.className = 'flex items-center gap-3 product-item';
+            productWrapper.dataset.id = product.id; 
             
-            productElement.innerHTML = `
-                <div class="flex items-center gap-4">
-                    <!-- [BARU] Menambahkan ikon pegangan untuk drag -->
-                    <i data-lucide="grip-vertical" class="drag-handle cursor-move text-gray-400 hover:text-gray-600"></i>
-                    <img src="${product.image}" alt="${product.name}" class="w-12 h-12 rounded-md object-contain" onerror="this.src='https://placehold.co/48x48/e0e0e0/757575?text=Img';">
-                    <div>
-                        <p class="font-bold text-lg text-gray-800">${product.name}</p>
-                        <p class="text-sm text-gray-500">${product.subtitle}</p>
+            productWrapper.innerHTML = `
+                <!-- Pegangan Drag & Drop di Kiri -->
+                <div class="drag-handle cursor-move p-2 text-gray-400 hover:text-gray-600">
+                    <i data-lucide="grip-vertical" class="w-6 h-6 pointer-events-none"></i>
+                </div>
+                <!-- Konten Produk -->
+                <div class="flex-grow flex items-center justify-between p-4 bg-gray-50 rounded-lg border">
+                    <div class="flex items-center gap-4">
+                        <img src="${product.image}" alt="${product.name}" class="w-12 h-12 rounded-md object-contain" onerror="this.src='https://placehold.co/48x48/e0e0e0/757575?text=Img';">
+                        <div>
+                            <p class="font-bold text-lg text-gray-800">${product.name}</p>
+                            <p class="text-sm text-gray-500">${product.subtitle}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button data-index="${index}" class="edit-btn bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600"><i data-lucide="edit" class="w-4 h-4 pointer-events-none"></i></button>
+                        <button data-index="${index}" class="delete-btn bg-red-600 text-white p-2 rounded-md hover:bg-red-700"><i data-lucide="trash-2" class="w-4 h-4 pointer-events-none"></i></button>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button data-index="${index}" class="edit-btn bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600"><i data-lucide="edit" class="w-4 h-4 pointer-events-none"></i></button>
-                    <button data-index="${index}" class="delete-btn bg-red-600 text-white p-2 rounded-md hover:bg-red-700"><i data-lucide="trash-2" class="w-4 h-4 pointer-events-none"></i></button>
-                </div>
             `;
-            adminProductList.appendChild(productElement);
+            adminProductList.appendChild(productWrapper);
         });
-        lucide.createIcons(); // Render ulang ikon setelah memodifikasi DOM
+        lucide.createIcons(); // Render ulang semua ikon lucide
     }
     
     function renderPopupSettings() {
-        // Names
         popupNamesTextarea.value = currentConfig.popupSettings.names.join(', ');
-
-        // Products
         popupProductList.innerHTML = '';
         currentConfig.popupSettings.products.forEach((p, index) => {
             addPopupProductRow(p.name, p.logo, p.weight, index);
@@ -173,9 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleFormSubmit(e) {
         e.preventDefault();
         const id = document.getElementById('product-id').value;
+        const productName = document.getElementById('product-name').value;
         const newProductData = {
-            id: document.getElementById('product-name').value.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, ''),
-            name: document.getElementById('product-name').value,
+            id: id || productName.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, ''),
+            name: productName,
             subtitle: document.getElementById('product-subtitle').value,
             description: document.getElementById('product-description').value,
             image: document.getElementById('product-image').value,
