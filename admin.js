@@ -58,16 +58,39 @@ document.addEventListener('DOMContentLoaded', () => {
         renderProductList();
         renderPopupSettings();
         setupEventListeners();
+        initSortable(); // [BARU] Inisialisasi fitur drag-and-drop
     }
     
+    // --- [BARU] Drag & Drop Initialization ---
+    function initSortable() {
+        new Sortable(adminProductList, {
+            handle: '.drag-handle', // Menentukan elemen mana yang menjadi 'pegangan'
+            animation: 150, // Animasi saat item dipindahkan
+            ghostClass: 'sortable-ghost', // Class untuk item 'bayangan' saat ditarik
+            onEnd: function (evt) {
+                // Fungsi ini dijalankan setelah item selesai diseret
+                const movedItem = currentConfig.products.splice(evt.oldIndex, 1)[0];
+                currentConfig.products.splice(evt.newIndex, 0, movedItem);
+                
+                // Render ulang list untuk memastikan data-index dan event listener diperbarui
+                renderProductList();
+            },
+        });
+    }
+
     // --- Rendering Functions ---
     function renderProductList() {
         adminProductList.innerHTML = '';
         currentConfig.products.forEach((product, index) => {
             const productElement = document.createElement('div');
-            productElement.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-lg border';
+            // Menambahkan class untuk item dan data-id
+            productElement.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-lg border product-item';
+            productElement.dataset.id = product.id; // Menyimpan ID produk
+            
             productElement.innerHTML = `
                 <div class="flex items-center gap-4">
+                    <!-- [BARU] Menambahkan ikon pegangan untuk drag -->
+                    <i data-lucide="grip-vertical" class="drag-handle cursor-move text-gray-400 hover:text-gray-600"></i>
                     <img src="${product.image}" alt="${product.name}" class="w-12 h-12 rounded-md object-contain" onerror="this.src='https://placehold.co/48x48/e0e0e0/757575?text=Img';">
                     <div>
                         <p class="font-bold text-lg text-gray-800">${product.name}</p>
@@ -81,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             adminProductList.appendChild(productElement);
         });
-        lucide.createIcons();
+        lucide.createIcons(); // Render ulang ikon setelah memodifikasi DOM
     }
     
     function renderPopupSettings() {
@@ -163,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
             available: document.getElementById('product-available').value === 'true',
             variants: []
         };
-        // Handle null tag
         if (!newProductData.tag.text) {
             newProductData.tag = null;
         }
@@ -176,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (id) { // Editing existing
+        if (id) {
             const index = currentConfig.products.findIndex(p => p.id === id);
             currentConfig.products[index] = newProductData;
-        } else { // Adding new
+        } else {
             currentConfig.products.push(newProductData);
         }
         
@@ -188,10 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleSaveAndDownload() {
-        // Update popup names
         currentConfig.popupSettings.names = popupNamesTextarea.value.split(',').map(name => name.trim()).filter(name => name);
         
-        // Update popup products
         const newPopupProducts = [];
         document.querySelectorAll('.popup-product-row').forEach(row => {
             const name = row.querySelector('.popup-product-name').value;
@@ -203,10 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         currentConfig.popupSettings.products = newPopupProducts;
         
-        // Generate file content
         const fileContent = `const config = ${JSON.stringify(currentConfig, null, 2)};`;
         
-        // Create a blob and trigger download
         const blob = new Blob([fileContent], { type: 'application/javascript' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -223,9 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Modal & Form Functions ---
     function openProductModal(product = null, index = null) {
         productForm.reset();
-        document.getElementById('product-variants-container').innerHTML = '<label class="block text-sm font-medium text-gray-700 mb-2">Varian Harga & Durasi</label>'; // Clear variants
+        document.getElementById('product-variants-container').innerHTML = '<label class="block text-sm font-medium text-gray-700 mb-2">Varian Harga & Durasi</label>';
 
-        if (product) { // Editing
+        if (product) {
             modalTitle.textContent = 'Edit Produk';
             document.getElementById('product-id').value = product.id;
             document.getElementById('product-name').value = product.name;
@@ -234,12 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('product-image').value = product.image;
             document.getElementById('product-tag-text').value = product.tag ? product.tag.text : '';
             document.getElementById('product-tag-color').value = product.tag ? product.tag.color : 'blue';
-            document.getElementById('product-available').value = product.available;
+            document.getElementById('product-available').value = String(product.available);
             product.variants.forEach(v => addVariantRow(v.price, v.duration));
-        } else { // Adding new
+        } else {
             modalTitle.textContent = 'Tambah Produk Baru';
             document.getElementById('product-id').value = '';
-            addVariantRow(); // Add one empty variant row by default
+            addVariantRow();
         }
         productModal.classList.remove('hidden');
     }
@@ -254,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         variantRow.className = 'variant-row grid grid-cols-12 gap-2 mb-2';
         variantRow.innerHTML = `
             <input type="text" class="variant-price col-span-5 px-3 py-2 border rounded-md" placeholder="Harga (cth: 10.000)" value="${price}">
-            <input type="text" class="variant-duration col-span-6 px-3 py-2 border rounded-md" placeholder="Durasi (cth: 1 Bulan)" value="${duration}">
+            <input type="text" class="variant-duration col-span-6 px-3 py-2 border rounded-md" placeholder="Durasi (cth: 1 Bulan)" value="${duration || ''}">
             <button type="button" class="remove-variant-btn col-span-1 text-red-500 hover:text-red-700"><i data-lucide="x-circle" class="w-5 h-5 mx-auto pointer-events-none"></i></button>
         `;
         container.appendChild(variantRow);
