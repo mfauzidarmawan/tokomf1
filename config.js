@@ -3,13 +3,14 @@ const config = {
     {
       "id": "capcut",
       "name": "Capcut Pro",
-      "subtitle": "Aktif Selamanya",
+      "subtitle": "Akun dari Seller",
       "description": "Buka semua fitur editing video premium, hilangkan watermark, dan akses ribuan aset tanpa iklan.",
       "image": "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/capcut-icon.svg",
       "tag": {
         "text": "Terlaris",
         "color": "red"
       },
+      "available": true,
       "variants": [
         {
           "price": "10.000",
@@ -19,19 +20,19 @@ const config = {
           "price": "25.000",
           "duration": "1 Bulan"
         }
-      ],
-      "available": true
+      ]
     },
     {
       "id": "canva",
       "name": "Canva Pro",
-      "subtitle": "Lifetime",
+      "subtitle": "Pro via Invite",
       "description": "Akses jutaan elemen desain premium, Magic Resize, background remover, dan buat konten profesional.",
       "image": "https://www.canva.com/favicon.ico",
       "tag": {
         "text": "Diskon",
         "color": "blue"
       },
+      "available": true,
       "variants": [
         {
           "price": "5.000",
@@ -41,23 +42,7 @@ const config = {
           "price": "12.000",
           "duration": "3 Bulan"
         }
-      ],
-      "available": true
-    },
-    {
-      "id": "chatgpt",
-      "name": "ChatGPT Plus",
-      "subtitle": "Akun Sendiri | 1 Bulan",
-      "description": "Dapatkan akses prioritas, respons lebih cepat, dan manfaatkan model bahasa paling canggih.",
-      "image": "https://chat.openai.com/favicon.ico",
-      "tag": null,
-      "variants": [
-        {
-          "price": "25.000",
-          "duration": null
-        }
-      ],
-      "available": false
+      ]
     },
     {
       "id": "netflix",
@@ -91,6 +76,21 @@ const config = {
         }
       ],
       "available": true
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT Plus",
+      "subtitle": "Akun Sendiri | 1 Bulan",
+      "description": "Dapatkan akses prioritas, respons lebih cepat, dan manfaatkan model bahasa paling canggih.",
+      "image": "https://chat.openai.com/favicon.ico",
+      "tag": null,
+      "available": false,
+      "variants": [
+        {
+          "price": "25.000",
+          "duration": null
+        }
+      ]
     }
   ],
   "popupSettings": {
@@ -142,7 +142,7 @@ const config = {
       {
         "name": "Capcut Pro",
         "logo": "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/capcut-icon.svg",
-        "weight": 2
+        "weight": 3
       },
       {
         "name": "Canva Pro",
@@ -163,11 +163,6 @@ const config = {
         "name": "Blackbox AI",
         "logo": "https://www.blackbox.ai/favicon.ico",
         "weight": 2
-      },
-      {
-        "name": "Spotify Premium",
-        "logo": "https://open.spotify.com/favicon.ico",
-        "weight": 1
       }
     ]
   }
