@@ -1,6 +1,6 @@
 // --- !! PENTING !! ---
 // Ganti password di bawah ini dengan password rahasia Anda.
-const correctPassword = "mfshop-admin-rahasia";
+const correctPassword = "mfshopadmin";
 // --- !! PENTING !! ---
 
 document.addEventListener('DOMContentLoaded', () => {
