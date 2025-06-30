@@ -6,7 +6,7 @@
     <title>Admin Panel - MFSHOP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- [BARU] Menambahkan library SortableJS untuk drag & drop -->
+    <!-- Menambahkan library SortableJS untuk drag & drop -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <style>
         body { font-family: 'Montserrat', sans-serif; }
@@ -14,6 +14,10 @@
         .sortable-ghost {
             background: #dbeafe;
             opacity: 0.7;
+            border: 2px dashed #3b82f6;
+        }
+        .sortable-chosen {
+            cursor: grabbing;
         }
     </style>
 </head>
@@ -51,7 +55,8 @@
                     <i data-lucide="plus-circle" class="w-5 h-5"></i> Tambah Produk Baru
                 </button>
             </div>
-            <p class="text-sm text-gray-500 mb-4">Tip: Klik dan seret ikon <i data-lucide="grip-vertical" class="inline-block w-4 h-4"></i> untuk mengubah urutan produk.</p>
+            <!-- Teks petunjuk diperbarui -->
+            <p class="text-sm text-gray-500 mb-4">Tip: Klik dan seret ikon <i data-lucide="grip-vertical" class="inline-block w-4 h-4 align-middle"></i> di sebelah kiri produk untuk mengubah urutannya.</p>
             <div id="admin-product-list" class="space-y-4">
                 <!-- Admin product list will be populated here -->
             </div>
